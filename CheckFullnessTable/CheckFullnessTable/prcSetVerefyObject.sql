@@ -28,11 +28,11 @@ BEGIN
 		ELSE
 			BEGIN
 				EXEC sp_executesql @sql;
-				PRINT '[Success] Добавлен объект к проверке: ' + @FULL_NAME;
+				PRINT '[Success] Р”РѕР±Р°РІР»РµРЅ РѕР±СЉРµРєС‚ Рє РїСЂРѕРІРµСЂРєРµ: ' + @FULL_NAME;
 			END
 	 END TRY
 	 BEGIN CATCH		
-		PRINT CONCAT('[Error] возникла ошибка в ходе выполнения:',CHAR(10),ERROR_NUMBER(),CHAR(10),ERROR_LINE(),CHAR(10),ERROR_MESSAGE());
+		PRINT CONCAT('[Error] РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° РІ С…РѕРґРµ РІС‹РїРѕР»РЅРµРЅРёСЏ:',CHAR(10),ERROR_NUMBER(),CHAR(10),ERROR_LINE(),CHAR(10),ERROR_MESSAGE());
 		IF @DEBUG = 0
 			THROW;
 	 END CATCH

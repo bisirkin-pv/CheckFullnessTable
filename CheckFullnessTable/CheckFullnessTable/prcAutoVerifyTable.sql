@@ -4,7 +4,7 @@ GO
 CREATE PROCEDURE cft.prcAutoVerifyTable
 AS
 BEGIN
-	/* перед вставкой нужно удалить старые записи */
+	/* РїРµСЂРµРґ РІСЃС‚Р°РІРєРѕР№ РЅСѓР¶РЅРѕ СѓРґР°Р»РёС‚СЊ СЃС‚Р°СЂС‹Рµ Р·Р°РїРёСЃРё */
 	DELETE tver
 	FROM TOOLS.cft.tVerification tver
 	JOIN (
