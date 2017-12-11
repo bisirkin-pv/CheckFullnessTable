@@ -91,7 +91,7 @@ IF EXISTS(
 		ELSE
 			BEGIN
 				EXEC sp_executesql @sql;
-				PRINT '[Success] ќбъект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_AUTO_VERIFY);
+				PRINT '[Success] Объект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_AUTO_VERIFY);
 			END			
 	END
 	ELSE 
