@@ -1,8 +1,8 @@
 /*
-	—крипт дл¤ удалени¤
+	скрипт для удаления
 */
 
-/* ”казываем базу */
+/* Указываем базу */
 USE TOOLS 
 GO
 DECLARE @DEBUG BIT = 0;
@@ -14,9 +14,9 @@ DECLARE @PRC_SET_VERIFY VARCHAR(100) = 'prcSetVerefyObject';
 DECLARE @PRC_AUTO_VERIFY VARCHAR(100) = 'prcAutoVerifyTable';
 
 IF @DEBUG = 1
-	PRINT '[Info] —рипт запущен в режиме debug, удаление объектов не происходит.'
+	PRINT '[Info] Скрипт запущен в режиме debug, удаление объектов не происходит.'
 ELSE
-	PRINT '[Info] —рипт запущен в режиме deploy'
+	PRINT '[Info] Скрипт запущен в режиме deploy'
 IF EXISTS(
 			SELECT * FROM sys.tables t
 			JOIN sys.schemas s
@@ -31,11 +31,11 @@ IF EXISTS(
 		ELSE
 			BEGIN
 				EXEC sp_executesql @sql;
-				PRINT '[Success] ќбъект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION);
+				PRINT '[Success] Объект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION);
 			END			
 	END
 	ELSE 
-		PRINT '[Info] ќбъект не найден: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION);
+		PRINT '[Info] Объект не найден: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION);
 
 IF EXISTS(
 			SELECT * FROM sys.views t
@@ -51,11 +51,11 @@ IF EXISTS(
 		ELSE
 			BEGIN
 				EXEC sp_executesql @sql;
-				PRINT '[Success] ќбъект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@VIEW_VERIFICATION);
+				PRINT '[Success] Объект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@VIEW_VERIFICATION);
 			END			
 	END
 	ELSE 
-		PRINT '[Info] ќбъект не найден: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@VIEW_VERIFICATION);
+		PRINT '[Info] Объект не найден: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@VIEW_VERIFICATION);
 
 IF EXISTS(
 			SELECT * FROM sys.procedures t
@@ -71,11 +71,11 @@ IF EXISTS(
 		ELSE
 			BEGIN
 				EXEC sp_executesql @sql;
-				PRINT '[Success] ќбъект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_SET_VERIFY);
+				PRINT '[Success] Объект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_SET_VERIFY);
 			END			
 	END
 	ELSE 
-		PRINT '[Info] ќбъект не найден: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_SET_VERIFY);
+		PRINT '[Info] Объект не найден: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_SET_VERIFY);
 
 IF EXISTS(
 			SELECT * FROM sys.procedures t
@@ -95,4 +95,4 @@ IF EXISTS(
 			END			
 	END
 	ELSE 
-		PRINT '[Info] ќбъект не найден: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_AUTO_VERIFY);
+		PRINT '[Info] Объект не найден: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_AUTO_VERIFY);
