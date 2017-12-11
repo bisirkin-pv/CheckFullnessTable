@@ -3,7 +3,7 @@
 Текущая версия реализована на T-SQL, для работы требуется MS SQL Server 2012 или выше.
 
 ## Установка:
-* [Скачать архив с github](https://github.com/bisirkin-pv/CheckFullnesTable/archive/master.zip)
+* [Скачать архив с github](https://github.com/bisirkin-pv/CheckFullnessTable/archive/master.zip)
 * Открыть скрипт `deploy.sql`
 * Произвести начальные настройки:
 ```sql
