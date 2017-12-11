@@ -1,26 +1,26 @@
 /*
-	Скрипт подготовки базы 
+	РЎРєСЂРёРїС‚ РїРѕРґРіРѕС‚РѕРІРєРё Р±Р°Р·С‹ 
 */
 
-/* Указываем базу для развертывания */
+/* РЈРєР°Р·С‹РІР°РµРј Р±Р°Р·Сѓ РґР»СЏ СЂР°Р·РІРµСЂС‚С‹РІР°РЅРёСЏ */
 USE TOOLS 
 GO
-DECLARE @DEBUG BIT = 0;		/* Только отобразить текст */
-DECLARE @REBILD BIT = 1;	/* пересоздавать объекты */
+DECLARE @DEBUG BIT = 0;		/* РўРѕР»СЊРєРѕ РѕС‚РѕР±СЂР°Р·РёС‚СЊ С‚РµРєСЃС‚ */
+DECLARE @REBILD BIT = 1;	/* РїРµСЂРµСЃРѕР·РґР°РІР°С‚СЊ РѕР±СЉРµРєС‚С‹ */
 DECLARE @sql NVARCHAR(MAX);
 DECLARE @SHCHEMA VARCHAR(5) = 'cft';
-DECLARE @TABLE_VERIFICATION VARCHAR(100) = 'tVerification';		/* Хранит данные по таблицам к проверке */
-DECLARE @VIEW_VERIFICATION VARCHAR(100) = 'vVerification';		/* Отображает сравнение проверок */
-DECLARE @PRC_SET_VERIFY VARCHAR(100) = 'prcSetVerefyObject';	/* Добавление новой таблицы и подсчет строк в таблице */
-DECLARE @PRC_AUTO_VERIFY VARCHAR(100) = 'prcAutoVerifyTable';	/* Проверка источников на наполнность */
+DECLARE @TABLE_VERIFICATION VARCHAR(100) = 'tVerification';		/* РҐСЂР°РЅРёС‚ РґР°РЅРЅС‹Рµ РїРѕ С‚Р°Р±Р»РёС†Р°Рј Рє РїСЂРѕРІРµСЂРєРµ */
+DECLARE @VIEW_VERIFICATION VARCHAR(100) = 'vVerification';		/* РћС‚РѕР±СЂР°Р¶Р°РµС‚ СЃСЂР°РІРЅРµРЅРёРµ РїСЂРѕРІРµСЂРѕРє */
+DECLARE @PRC_SET_VERIFY VARCHAR(100) = 'prcSetVerefyObject';	/* Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕР№ С‚Р°Р±Р»РёС†С‹ Рё РїРѕРґСЃС‡РµС‚ СЃС‚СЂРѕРє РІ С‚Р°Р±Р»РёС†Рµ */
+DECLARE @PRC_AUTO_VERIFY VARCHAR(100) = 'prcAutoVerifyTable';	/* РџСЂРѕРІРµСЂРєР° РёСЃС‚РѕС‡РЅРёРєРѕРІ РЅР° РЅР°РїРѕР»РЅРЅРѕСЃС‚СЊ */
 DECLARE @IS_CREATE BIT = 0;
 
 IF @DEBUG = 1
-	PRINT '[Info] Срипт запущен в режиме debug, создание объектов не происходит.'
+	PRINT '[Info] РЎСЂРёРїС‚ Р·Р°РїСѓС‰РµРЅ РІ СЂРµР¶РёРјРµ debug, СЃРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚РѕРІ РЅРµ РїСЂРѕРёСЃС…РѕРґРёС‚.'
 ELSE
-	PRINT '[Info] Срипт запущен в режиме deploy'
+	PRINT '[Info] РЎСЂРёРїС‚ Р·Р°РїСѓС‰РµРЅ РІ СЂРµР¶РёРјРµ deploy'
 
-/* Проверка существования схемы */
+/* РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ СЃС…РµРјС‹ */
 IF NOT EXISTS(SELECT * FROM sys.schemas WHERE name = @SHCHEMA)
 	BEGIN		
 	SET @sql = 'CREATE SCHEMA ' + @SHCHEMA;
@@ -29,13 +29,13 @@ IF NOT EXISTS(SELECT * FROM sys.schemas WHERE name = @SHCHEMA)
 		ELSE
 			BEGIN
 				EXEC sp_executesql @sql;
-				PRINT '[Success] Создана схема: ' + @SHCHEMA;
+				PRINT '[Success] РЎРѕР·РґР°РЅР° СЃС…РµРјР°: ' + @SHCHEMA;
 			END				
 	END
 	ELSE
-		PRINT '[Info] Схема [' + @SHCHEMA + '] уже существует'
+		PRINT '[Info] РЎС…РµРјР° [' + @SHCHEMA + '] СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚'
 
-/* Таблица для хранения источников к проверке */
+/* РўР°Р±Р»РёС†Р° РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РёСЃС‚РѕС‡РЅРёРєРѕРІ Рє РїСЂРѕРІРµСЂРєРµ */
 IF EXISTS(
 			SELECT * FROM sys.tables t
 			JOIN sys.schemas s
@@ -52,7 +52,7 @@ IF EXISTS(
 				BEGIN
 					EXEC sp_executesql @sql;
 					SET @IS_CREATE = 1;
-					PRINT '[Success] Объект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION);
+					PRINT '[Success] РћР±СЉРµРєС‚ Р±С‹Р» СѓРґР°Р»РµРЅ: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION);
 				END			
 	END
 ELSE
@@ -73,12 +73,12 @@ CREATE TABLE ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION,CHAR(10))
 				BEGIN
 					EXEC sp_executesql @sql;
 					SET @IS_CREATE = 0;
-					PRINT '[Success] Создан объект:' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION)
+					PRINT '[Success] РЎРѕР·РґР°РЅ РѕР±СЉРµРєС‚:' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION)
 				END
 			ELSE
-				PRINT '[Info] Объект уже существует: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION);
+				PRINT '[Info] РћР±СЉРµРєС‚ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION);
 
-/* Создание представления для отображения результатов проверки */
+/* РЎРѕР·РґР°РЅРёРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РїСЂРѕРІРµСЂРєРё */
 IF EXISTS(
 			SELECT * FROM sys.views t
 			JOIN sys.schemas s
@@ -95,7 +95,7 @@ IF EXISTS(
 				BEGIN
 					EXEC sp_executesql @sql;
 					SET @IS_CREATE = 1;
-					PRINT '[Success] Объект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@VIEW_VERIFICATION);
+					PRINT '[Success] РћР±СЉРµРєС‚ Р±С‹Р» СѓРґР°Р»РµРЅ: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@VIEW_VERIFICATION);
 				END			
 	END
 ELSE
@@ -123,7 +123,7 @@ FROM (
 		,fullName
 		,countRows
 	FROM (
-		/* Данные за вчера */
+		/* Р”Р°РЅРЅС‹Рµ Р·Р° РІС‡РµСЂР° */
 		SELECT
 			 loadDtm
 			,fullName
@@ -146,12 +146,12 @@ CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION,SPACE(1),'tnow',CHAR(10)) 
 				BEGIN
 					EXEC sp_executesql @sql;
 					SET @IS_CREATE = 0;
-					PRINT '[Success] Создан объект:' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@VIEW_VERIFICATION)
+					PRINT '[Success] РЎРѕР·РґР°РЅ РѕР±СЉРµРєС‚:' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@VIEW_VERIFICATION)
 				END
 			ELSE
-				PRINT '[Info] Объект уже существует: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@VIEW_VERIFICATION);
+				PRINT '[Info] РћР±СЉРµРєС‚ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@VIEW_VERIFICATION);
 
-/* Создание процедуры для внесения объектов для проверки */
+/* РЎРѕР·РґР°РЅРёРµ РїСЂРѕС†РµРґСѓСЂС‹ РґР»СЏ РІРЅРµСЃРµРЅРёСЏ РѕР±СЉРµРєС‚РѕРІ РґР»СЏ РїСЂРѕРІРµСЂРєРё */
 IF EXISTS(
 			SELECT * FROM sys.procedures t
 			JOIN sys.schemas s
@@ -168,7 +168,7 @@ IF EXISTS(
 				BEGIN
 					EXEC sp_executesql @sql;
 					SET @IS_CREATE = 1;
-					PRINT '[Success] Объект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_SET_VERIFY);
+					PRINT '[Success] РћР±СЉРµРєС‚ Р±С‹Р» СѓРґР°Р»РµРЅ: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_SET_VERIFY);
 				END			
 	END
 ELSE
@@ -198,11 +198,11 @@ BEGIN
 		ELSE
 			BEGIN
 				EXEC sp_executesql @sql;
-				PRINT ''[Success] Добавлен объект к проверке: '' + @FULL_NAME;
+				PRINT ''[Success] Р”РѕР±Р°РІР»РµРЅ РѕР±СЉРµРєС‚ Рє РїСЂРѕРІРµСЂРєРµ: '' + @FULL_NAME;
 			END
 	 END TRY
 	 BEGIN CATCH		
-		PRINT CONCAT(''[Error] возникла ошибка в ходе выполнения:'',CHAR(10),ERROR_NUMBER(),CHAR(10),ERROR_LINE(),CHAR(10),ERROR_MESSAGE());
+		PRINT CONCAT(''[Error] РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° РІ С…РѕРґРµ РІС‹РїРѕР»РЅРµРЅРёСЏ:'',CHAR(10),ERROR_NUMBER(),CHAR(10),ERROR_LINE(),CHAR(10),ERROR_MESSAGE());
 		IF @DEBUG = 0
 			THROW;
 	 END CATCH
@@ -214,12 +214,12 @@ END'
 				BEGIN
 					EXEC sp_executesql @sql;
 					SET @IS_CREATE = 0;
-					PRINT '[Success] Создан объект:' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_SET_VERIFY)
+					PRINT '[Success] РЎРѕР·РґР°РЅ РѕР±СЉРµРєС‚:' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_SET_VERIFY)
 				END
 			ELSE
-				PRINT '[Info] Объект уже существует: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_SET_VERIFY);
+				PRINT '[Info] РћР±СЉРµРєС‚ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_SET_VERIFY);
 
-/* Создание процедуры для выполнения проверок */
+/* РЎРѕР·РґР°РЅРёРµ РїСЂРѕС†РµРґСѓСЂС‹ РґР»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РїСЂРѕРІРµСЂРѕРє */
 IF EXISTS(
 			SELECT * FROM sys.procedures t
 			JOIN sys.schemas s
@@ -236,7 +236,7 @@ IF EXISTS(
 				BEGIN
 					EXEC sp_executesql @sql;
 					SET @IS_CREATE = 1;
-					PRINT '[Success] Объект был удален: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_AUTO_VERIFY);
+					PRINT '[Success] РћР±СЉРµРєС‚ Р±С‹Р» СѓРґР°Р»РµРЅ: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_AUTO_VERIFY);
 				END			
 	END
 ELSE
@@ -245,7 +245,7 @@ ELSE
 SET @sql = '
 CREATE PROCEDURE ' + CONCAT(@SHCHEMA,'.',@PRC_AUTO_VERIFY,CHAR(10),'AS',CHAR(10)) +
 'BEGIN
-	/* перед вставкой нужно удалить старые записи */
+	/* РїРµСЂРµРґ РІСЃС‚Р°РІРєРѕР№ РЅСѓР¶РЅРѕ СѓРґР°Р»РёС‚СЊ СЃС‚Р°СЂС‹Рµ Р·Р°РїРёСЃРё */
 	DELETE tver
 	FROM ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@TABLE_VERIFICATION) +' tver
 	JOIN (
@@ -357,7 +357,7 @@ END'
 				BEGIN
 					EXEC sp_executesql @sql;
 					SET @IS_CREATE = 0;
-					PRINT '[Success] Создан объект:' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_AUTO_VERIFY)
+					PRINT '[Success] РЎРѕР·РґР°РЅ РѕР±СЉРµРєС‚:' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_AUTO_VERIFY)
 				END
 			ELSE
-				PRINT '[Info] Объект уже существует: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_AUTO_VERIFY);
+				PRINT '[Info] РћР±СЉРµРєС‚ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚: ' + CONCAT(DB_NAME(),'.',@SHCHEMA,'.',@PRC_AUTO_VERIFY);
