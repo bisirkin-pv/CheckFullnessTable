@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Checking the fullness of objects</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bisirkin-pv/CheckFullnessTable/www/css/verifyObj.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Проверка наполнености источников</h1>
+      <br />
+      <div class="verify-info-result">
+        Всего объектов проверено 11 из них с предупреждениями
+        <strong>1</strong>
+      </div>
+      <div>
+        <label for="filter">
+          <input type="checkbox" name="filter" id="filter" />Показывать только
+          ошибки
+        </label>
+      </div>
+      <ul>
+        <li class="verify-error">
+          <div class="verify-table-block">Объект: pubs.dbo.authors</div>
+          <table class="verify-table" id="verify_table_0">
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Предыдущее измерение</th>
+                <th>Последние измерение</th>
+                <th>Процент</th>
+              </tr>
+              <tr>
+                <td class="verify-caption-row verify-error">Дата и время:</td>
+                <td>11.12.2017 19:12:14</td>
+                <td>11.12.2017 19:12:17</td>
+                <td rowspan="3">2.000</td>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк:</td>
+                <td>23</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="verify-table-small" id="verify_table_small_0">
+            <tbody>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк(было / стало):</td>
+                <td>23</td>
+                <td>/</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li class="">
+          <div class="verify-table-block">Объект: pubs.dbo.discounts</div>
+          <table class="verify-table" id="verify_table_1">
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Предыдущее измерение</th>
+                <th>Последние измерение</th>
+                <th>Процент</th>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Дата и время:</td>
+                <td>11.12.2017 19:12:14</td>
+                <td>11.12.2017 19:12:17</td>
+                <td rowspan="3">1.000</td>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк:</td>
+                <td>3</td>
+                <td>3</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="verify-table-small" id="verify_table_small_1">
+            <tbody>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк(было / стало):</td>
+                <td>3</td>
+                <td>/</td>
+                <td>3</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li class="">
+          <div class="verify-table-block">Объект: pubs.dbo.employee</div>
+          <table class="verify-table" id="verify_table_2">
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Предыдущее измерение</th>
+                <th>Последние измерение</th>
+                <th>Процент</th>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Дата и время:</td>
+                <td>11.12.2017 19:12:14</td>
+                <td>11.12.2017 19:12:17</td>
+                <td rowspan="3">1.000</td>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк:</td>
+                <td>18</td>
+                <td>18</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="verify-table-small" id="verify_table_small_2">
+            <tbody>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк(было / стало):</td>
+                <td>18</td>
+                <td>/</td>
+                <td>18</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li class="">
+          <div class="verify-table-block">Объект: pubs.dbo.jobs</div>
+          <table class="verify-table" id="verify_table_3">
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Предыдущее измерение</th>
+                <th>Последние измерение</th>
+                <th>Процент</th>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Дата и время:</td>
+                <td>11.12.2017 19:12:14</td>
+                <td>11.12.2017 19:12:17</td>
+                <td rowspan="3">1.000</td>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк:</td>
+                <td>14</td>
+                <td>14</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="verify-table-small" id="verify_table_small_3">
+            <tbody>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк(было / стало):</td>
+                <td>14</td>
+                <td>/</td>
+                <td>14</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li class="">
+          <div class="verify-table-block">Объект: pubs.dbo.pub_info</div>
+          <table class="verify-table" id="verify_table_4">
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Предыдущее измерение</th>
+                <th>Последние измерение</th>
+                <th>Процент</th>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Дата и время:</td>
+                <td>11.12.2017 19:12:14</td>
+                <td>11.12.2017 19:12:17</td>
+                <td rowspan="3">1.000</td>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк:</td>
+                <td>8</td>
+                <td>8</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="verify-table-small" id="verify_table_small_4">
+            <tbody>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк(было / стало):</td>
+                <td>8</td>
+                <td>/</td>
+                <td>8</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li class="">
+          <div class="verify-table-block">Объект: pubs.dbo.publishers</div>
+          <table class="verify-table" id="verify_table_5">
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Предыдущее измерение</th>
+                <th>Последние измерение</th>
+                <th>Процент</th>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Дата и время:</td>
+                <td>11.12.2017 19:12:14</td>
+                <td>11.12.2017 19:12:17</td>
+                <td rowspan="3">1.000</td>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк:</td>
+                <td>8</td>
+                <td>8</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="verify-table-small" id="verify_table_small_5">
+            <tbody>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк(было / стало):</td>
+                <td>8</td>
+                <td>/</td>
+                <td>8</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li class="">
+          <div class="verify-table-block">Объект: pubs.dbo.roysched</div>
+          <table class="verify-table" id="verify_table_6">
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Предыдущее измерение</th>
+                <th>Последние измерение</th>
+                <th>Процент</th>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Дата и время:</td>
+                <td>11.12.2017 19:12:14</td>
+                <td>11.12.2017 19:12:17</td>
+                <td rowspan="3">1.000</td>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк:</td>
+                <td>40</td>
+                <td>40</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="verify-table-small" id="verify_table_small_6">
+            <tbody>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк(было / стало):</td>
+                <td>40</td>
+                <td>/</td>
+                <td>40</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li class="">
+          <div class="verify-table-block">Объект: pubs.dbo.sales</div>
+          <table class="verify-table" id="verify_table_7">
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Предыдущее измерение</th>
+                <th>Последние измерение</th>
+                <th>Процент</th>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Дата и время:</td>
+                <td>11.12.2017 19:12:14</td>
+                <td>11.12.2017 19:12:17</td>
+                <td rowspan="3">1.000</td>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк:</td>
+                <td>2</td>
+                <td>2</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="verify-table-small" id="verify_table_small_7">
+            <tbody>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк(было / стало):</td>
+                <td>2</td>
+                <td>/</td>
+                <td>2</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li class="">
+          <div class="verify-table-block">Объект: pubs.dbo.stores</div>
+          <table class="verify-table" id="verify_table_8">
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Предыдущее измерение</th>
+                <th>Последние измерение</th>
+                <th>Процент</th>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Дата и время:</td>
+                <td>11.12.2017 19:12:14</td>
+                <td>11.12.2017 19:12:17</td>
+                <td rowspan="3">1.000</td>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк:</td>
+                <td>6</td>
+                <td>6</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="verify-table-small" id="verify_table_small_8">
+            <tbody>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк(было / стало):</td>
+                <td>6</td>
+                <td>/</td>
+                <td>6</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li class="">
+          <div class="verify-table-block">Объект: pubs.dbo.titleauthor</div>
+          <table class="verify-table" id="verify_table_9">
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Предыдущее измерение</th>
+                <th>Последние измерение</th>
+                <th>Процент</th>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Дата и время:</td>
+                <td>11.12.2017 19:12:14</td>
+                <td>11.12.2017 19:12:17</td>
+                <td rowspan="3">1.000</td>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк:</td>
+                <td>15</td>
+                <td>15</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="verify-table-small" id="verify_table_small_9">
+            <tbody>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк(было / стало):</td>
+                <td>15</td>
+                <td>/</td>
+                <td>15</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li class="">
+          <div class="verify-table-block">Объект: pubs.dbo.titles</div>
+          <table class="verify-table" id="verify_table_10">
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Предыдущее измерение</th>
+                <th>Последние измерение</th>
+                <th>Процент</th>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Дата и время:</td>
+                <td>11.12.2017 19:12:14</td>
+                <td>11.12.2017 19:12:17</td>
+                <td rowspan="3">1.000</td>
+              </tr>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк:</td>
+                <td>11</td>
+                <td>11</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="verify-table-small" id="verify_table_small_10">
+            <tbody>
+              <tr>
+                <td class="verify-caption-row">Кол-во строк(было / стало):</td>
+                <td>11</td>
+                <td>/</td>
+                <td>11</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      function ShowHideBlock(isHide, cls) {
+        var ulBlock = document.querySelector(".container ul");
+        var liBlock = ulBlock.getElementsByTagName("li");
+        for (var i = 0; i < liBlock.length; i++) {
+          if (!liBlock[i].className.includes(cls)) {
+            if (!!isHide) {
+              liBlock[i].className = "hide";
+            } else {
+              liBlock[i].className = "";
+            }
+          }
+        }
+      }
+
+      setTimeout(() => {
+        let checkbox = document.querySelector("#filter");
+        let action = "change";
+        checkbox.addEventListener(
+          action,
+          function (obj) {
+            ShowHideBlock(obj.target.checked, "verify-error");
+          },
+          true
+        );
+      }, 100);
+    </script>
+  </body>
+</html>
